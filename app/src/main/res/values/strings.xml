@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Easy JPKI</string>
+    <string name="input_hint_pin">PIN</string>
+    <string name="input_hint_message">Message to sign</string>
+    <string name="button_sign">Sign</string>
+    <string name="button_verify">Verify</string>
+    <string name="alert_cert_fetched">Successfully fetched your certificate from the card.</string>
+</resources>
