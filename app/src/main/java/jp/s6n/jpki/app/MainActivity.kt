@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import jp.s6n.jpki.app.databinding.ActivityMainBinding
 import jp.s6n.jpki.app.jpki.ClientForAuth
 import jp.s6n.jpki.app.jpki.NfcCard
 import java.nio.ByteBuffer
@@ -34,9 +34,8 @@ fun ByteBuffer.toArray(): ByteArray {
 }
 
 class MainActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
+    private lateinit var binding: ActivityMainBinding
     private lateinit var nfcCard: NfcCard
-    private lateinit var inputPin: EditText
-    private lateinit var inputMessage: EditText
 
     private val openDocumentLauncher =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) {
@@ -56,10 +55,9 @@ class MainActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        inputPin = findViewById(R.id.input_pin)
-        inputMessage = findViewById(R.id.input_message)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun onTagDiscovered(tag: Tag?) {
@@ -106,7 +104,7 @@ class MainActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
         }
 
         val client = ClientForAuth(nfcCard)
-        val messageBytes = inputMessage.text.toString().toByteArray()
+        val messageBytes = binding.inputMessage.text.toString().toByteArray()
 
         if (isVerifyMode) {
             val signature = uri
@@ -128,7 +126,7 @@ class MainActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
                     .show()
             }
         } else {
-            val signature = client.sign(inputPin.text.toString(), messageBytes).toArray()
+            val signature = client.sign(binding.inputPin.text.toString(), messageBytes).toArray()
             Log.d("JPKI.Signature", signature.toHex())
 
             uri
