@@ -10,6 +10,9 @@ class LibJpki
         external fun init()
 
         @JvmStatic
+        external fun lastError(): String?
+
+        @JvmStatic
         external fun newNfcCard(delegate: NfcCardDelegate): Long
 
         @JvmStatic
@@ -44,7 +47,7 @@ class LibJpki
 
         init {
             System.loadLibrary("jpki")
-            init()
+            init().errorChecked()
         }
     }
 }
