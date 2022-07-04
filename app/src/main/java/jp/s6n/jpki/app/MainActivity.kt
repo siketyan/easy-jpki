@@ -5,12 +5,12 @@ import android.net.Uri
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.IsoDep
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import jp.s6n.jpki.app.databinding.ActivityMainBinding
 import jp.s6n.jpki.app.jpki.ClientForAuth
 import jp.s6n.jpki.app.jpki.NfcCard
@@ -61,8 +61,6 @@ class MainActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
     }
 
     override fun onTagDiscovered(tag: Tag?) {
-        NfcAdapter.getDefaultAdapter(this).disableReaderMode(this)
-
         val str = tag?.techList?.joinToString(",") ?: return
         Log.d("JPKI.Nfc.Tag", str)
 
@@ -147,6 +145,7 @@ class MainActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
 
         client.close()
         isoDep.close()
+        NfcAdapter.getDefaultAdapter(this).disableReaderMode(this);
     }
 
     fun startSign(v: View) {
