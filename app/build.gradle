@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    compileSdk 30
-    compileSdkVersion 30
-    ndkVersion '22.1.7171670'
+    compileSdk 31
+    compileSdkVersion 31
+    ndkVersion '23.2.8568313'
     buildToolsVersion '31.0.0'
 
     defaultConfig {
         applicationId "jp.s6n.jpki.app"
         minSdk 26
-        targetSdk 30
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
