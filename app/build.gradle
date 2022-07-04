@@ -46,10 +46,10 @@ android {
 }
 
 cargo {
-    module = '../../jpki-rs/android'
+    module = '../jpki-rs/android'
     libname = 'jpki'
     targets = ['arm', 'arm64']
-    targetDirectory = '../../jpki-rs/target'
+    targetDirectory = '../jpki-rs/target'
 }
 
 dependencies {
