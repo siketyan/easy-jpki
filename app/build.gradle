@@ -9,15 +9,15 @@ ext {
 }
 
 android {
-    compileSdk 31
-    compileSdkVersion 31
+    compileSdk 33
+    compileSdkVersion 33
     ndkVersion '23.2.8568313'
-    buildToolsVersion '31.0.0'
+    buildToolsVersion '33.0.0'
 
     defaultConfig {
         applicationId "jp.s6n.jpki.app"
         minSdk 26
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
